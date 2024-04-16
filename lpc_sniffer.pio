@@ -55,7 +55,7 @@ static inline void lpc_sniffer_program_init(PIO pio, uint sm, uint offset, uint 
     // This will ensure we will not block.
     sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_RX);
 
-    float div = (float)clock_get_hz(clk_sys) / 200000000.0;
+    float div = (float)clock_get_hz(clk_sys) / 270000000.0;
     sm_config_set_clkdiv(&c, div);
     
     // Load our configuration, and jump to the start of the program

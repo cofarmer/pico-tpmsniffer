@@ -134,23 +134,28 @@ void core1_entry() {
 
 
 int main() {
+    //vreg_set_voltage(VREG_VOLTAGE_MAX);
     set_sys_clock_khz(270000, true); // 158us
     stdio_init_all();
-    sleep_ms(5000);
+    //sleep_ms(5000);
 
-    puts(" _           ");
-    puts("|_) o  _  _  ");
-    puts("|   | (_ (_) ");
-    puts("");
-    puts("88P'888'Y88 888 88e    e   e        dP\"8         ,e,  dP,e,  dP,e,                ");
-    puts("P'  888  'Y 888 888D  d8b d8b      C8b Y 888 8e   \"   8b \"   8b \"   ,e e,  888,8, ");
-    puts("    888     888 88\"  e Y8b Y8b      Y8b  888 88b 888 888888 888888 d88 88b 888 \"  ");
-    puts("    888     888     d8b Y8b Y8b    b Y8D 888 888 888  888    888   888   , 888    ");
-    puts("    888     888    d888b Y8b Y8b   8edP  888 888 888  888    888    \"YeeP\" 888    ");
-    puts("                                                                 - by stacksmashing");
+    gpio_init(LED_PIN);
+    gpio_set_dir(LED_PIN, 1);
+    gpio_put(LED_PIN, 0);
+
+    while(!stdio_usb_connected());
+
+    puts("Author by Noema");
+    puts("Author by Noema");
+    puts("Author by Noema");
+    puts("Author by Noema");
     puts("");
 
-    printf("[+] Ready to sniff!\n");
+    printf("[+] Ready to sniff LPC TPM... \n");
+
+    float f = (float)clock_get_hz(clk_sys);
+
+    gpio_put(LED_PIN, 1);
 
     multicore_launch_core1(core1_entry);
 
